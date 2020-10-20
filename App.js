@@ -8,6 +8,7 @@ import { Detalles } from './app/pantallas/Detalles';
 
 const Stack = createStackNavigator();
 
+// Main component
 export default function App() {
   return (
     <NavigationContainer>
