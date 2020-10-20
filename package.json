@@ -6,6 +6,7 @@
     "emu": "start-android-emulator",
     "ios": "react-native run-ios",
     "web": "expo start --web",
+    "build_assemble": "cd android/ && ./gradlew assembleRelease",
     "test": "jest"
   },
   "dependencies": {
