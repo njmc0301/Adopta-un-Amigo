@@ -1,0 +1,12 @@
+{
+  "name": "adopta-un-amigo",
+  "displayName": "adopta-un-amigo",
+  "expo": {
+    "name": "adopta-un-amigo",
+    "slug": "adopta-un-amigo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
