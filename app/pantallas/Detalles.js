@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Alert, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Cargando } from '../componentes/cargando'
 import { RIF } from '../componentes/rif'
+import { removePerros } from '../servicios/perros'
 
 const styles = StyleSheet.create({
   contenedor: {
@@ -36,8 +38,32 @@ const styles = StyleSheet.create({
   },
 })
 
-export const Detalles = ({route}) => {
+export const Detalles = ({route, navigation}) => {
   const { amigo } = route.params;
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleAdoptarModalOnPress = () => {
+    navigation.navigate("Home");
+  }
+
+  const adoptar = async () => {
+    setIsLoading(true);
+    
+    await removePerros(amigo.id);
+    
+    setIsLoading(false);
+
+    Alert.alert(
+      "MUCHAS GRACIAS POR ADOPTAR A UN AMIGO!!!!",
+      "Para continuar con el proceso de adopcion nos veremos en la fecha acordada, para completar los pasos finales para buscar a su Nuevo amigo, Con la mayor alegria se despide Adopta un Amigo :D",
+      [
+        { text: "OK", onPress: handleAdoptarModalOnPress }
+      ],
+      { cancelable: false }
+    )
+  }
+
   return (
     <ScrollView>
       <Image
@@ -66,17 +92,16 @@ export const Detalles = ({route}) => {
           <Text style={styles.textoDatos}>{amigo.comportamiento}</Text>
         </View>
       
-        <TouchableOpacity
-          style={styles.botonAdoptar}
-          onPress={() => {
-            Alert.alert(
-              "MUCHAS GRACIAS POR ADOPTAR A UN AMIGO!!!!",
-              "Para continuar con el proceso de adopcion nos veremos en la fecha acordada, para completar los pasos finales para buscar a su Nuevo amigo, Con la mayor alegria se despide Adopta un Amigo :D"
-            )
-          }}
-        >
-          <Text style={styles.textoBotonAdoptar}>Adoptar</Text>
-        </TouchableOpacity>
+        {isLoading ? (
+          <Cargando />
+        ) : (
+          <TouchableOpacity
+            style={styles.botonAdoptar}
+            onPress={adoptar}
+          >
+            <Text style={styles.textoBotonAdoptar}>Adoptar</Text>
+          </TouchableOpacity>
+        )}
 
       </View>
       <RIF />

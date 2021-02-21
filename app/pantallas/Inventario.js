@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
-import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import React, { useEffect, useState } from 'react'
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
-import { ListaDeAmigos } from "../shared";
 import { RIF } from '../componentes/rif'
+import { Cargando } from '../componentes/cargando'
+
+import { getPerros } from '../servicios/perros';
 
 const amigosStyles = StyleSheet.create({
   contenedor: {
@@ -71,15 +73,30 @@ const Amigo = ({item, navigation}) => {
 }
 
 export const Inventario = ({navigation}) => {
+  const [perrosData, setPerrosData] = useState('');
+
+  useEffect(() => {
+    fetchPerros();
+  }, []);
+
+  const fetchPerros = async () => {
+    const res = await getPerros();
+
+    setPerrosData(res);
+  };
+
+  if(!perrosData) {
+    return <Cargando />
+  }
+
   return (
-    <ScrollView>
-      <View>
-        <FlatList
-          data={ListaDeAmigos}
-          renderItem={({item}) => <Amigo item={item} navigation={navigation} />}
-        />
-      </View>
-      <RIF />
-    </ScrollView>
+    <FlatList
+      data={perrosData}
+      renderItem={({item}) => <Amigo item={item} navigation={navigation} />}
+      keyExtractor={(_, index) => `amigo-${index}`}
+      ListFooterComponent={
+        <RIF />
+      }
+    />
   )
 }

@@ -36,10 +36,9 @@ const styles = StyleSheet.create({
     aspectRatio: 3/2,
     resizeMode: "contain",
   },
-})
+});
 
 export const Home = ({navigation}) => {
-  
   return (
     <ScrollView>
       <Image
