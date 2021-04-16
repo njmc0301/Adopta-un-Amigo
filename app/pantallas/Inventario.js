@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
-import { RIF } from '../componentes/rif'
-import { Cargando } from '../componentes/cargando'
+import { RIF } from '../componentes/Rif'
+import { Cargando } from '../componentes/Cargando'
 
 import { getPerros } from '../servicios/perros';
 

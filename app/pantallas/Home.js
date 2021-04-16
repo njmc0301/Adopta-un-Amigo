@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { View, Text, ScrollView, StyleSheet, Image,  TouchableOpacity } from 'react-native';
 
-import { RIF } from '../componentes/rif'
+import { RIF } from '../componentes/Rif'
 
 const styles = StyleSheet.create({
   contenedor: {
@@ -47,11 +47,11 @@ export const Home = ({navigation}) => {
       />
       <View style={styles.contenedor}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Nuestros Amigos')}
+          onPress={() => navigation.navigate('Autenticacion')}
           style={styles.botonPrincipal}  
         >
           <Text style={styles.textoBotonPrincipal}>
-            Ir a la lista de animales
+            Bienvenido
           </Text>
         </TouchableOpacity>
 

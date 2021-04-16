@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Alert, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { Cargando } from '../componentes/cargando'
-import { RIF } from '../componentes/rif'
+import { Cargando } from '../componentes/Cargando'
+import { RIF } from '../componentes/Rif'
 import { removePerros } from '../servicios/perros'
 
 const styles = StyleSheet.create({

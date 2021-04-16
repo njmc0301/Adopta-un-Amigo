@@ -10,7 +10,8 @@ const httpConfig = {
 const http = axios.create(httpConfig);
 
 const serverUrls = {
-  perros: '/perros'
+  perros: '/perros',
+  usuarios: '/usuarios',
 };
 
 export {
